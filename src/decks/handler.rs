@@ -51,3 +51,10 @@ pub fn delete(id: i32, connection: DbConn) -> Result<Status, Status> {
         Err(error) => Err(error_status(error))
     }
 }
+
+#[patch("/<id>/name", format = "plain", data = "<name>")]
+pub fn patch_name(id: i32, name: String, connection: DbConn) -> Result<Json<Deck>, Status> {
+    repository::update_name(id, name, &connection)
+        .map(|deck| Json(deck))
+        .map_err(|error| error_status(error))
+}

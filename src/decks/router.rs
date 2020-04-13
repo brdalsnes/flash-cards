@@ -12,7 +12,8 @@ pub fn create_routes() {
                 handler::get,
                 handler::post,
                 handler::put,
-                handler::delete
+                handler::delete,
+                handler::patch_name,
             ],
     ).launch();
 }
