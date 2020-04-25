@@ -1,13 +1,11 @@
 use rocket;
-use crate::decks::handler;
+use crate::users::handler;
 
 pub fn routes() -> Vec<rocket::Route> {
     routes![
         handler::all,
         handler::get,
         handler::post,
-        handler::put,
         handler::delete,
-        handler::patch_name,
     ]
 }

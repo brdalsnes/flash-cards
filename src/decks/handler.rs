@@ -1,18 +1,11 @@
 use rocket_contrib::json::Json;
 use rocket::http::Status;
 use rocket::response::status;
-use diesel::result::Error;
 
 use crate::connection::DbConn;
 use crate::decks::repository;
 use crate::decks::model::{Deck, InsertableDeck};
-
-fn error_status(error: Error) -> Status {
-    match error {
-        Error::NotFound => Status::NotFound,
-        _ => Status::InternalServerError
-    }
-}
+use crate::utils::error_helpers::error_status;
 
 #[get("/")]
 pub fn all(connection: DbConn) -> Result<Json<Vec<Deck>>, Status> {
